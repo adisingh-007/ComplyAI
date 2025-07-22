@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import "./app.css";
+import "./App.css";
 
 const BACKEND_URL = "http://localhost:5000";
 
