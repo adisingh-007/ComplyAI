@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import "./app.css";
+import "./App.css";
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 export default function App() {
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -122,7 +122,11 @@ export default function App() {
         <div className="sidebar">
           <div className="sidebar-section">
             <h3>Upload Document</h3>
-            <div className="file-upload-area" onClick={handleUploadClick} style={{ cursor: "pointer" }}>
+            <div 
+              className="file-upload-area" 
+              onClick={handleUploadClick} 
+              style={{ cursor: "pointer" }}
+            >
               <div className="file-upload-text">Drop PDF here or click to browse</div>
               <div className="file-upload-subtext">Supports PDF files</div>
               <input
@@ -156,15 +160,11 @@ export default function App() {
               </div>
               <div className="stat-item">
                 <span className="stat-label">Vector Store</span>
-                <span className="stat-value">
-                  {vectorReady ? "Ready" : "Not Ready"}
-                </span>
+                <span className="stat-value">{vectorReady ? "Ready" : "Not Ready"}</span>
               </div>
               <div className="stat-item">
                 <span className="stat-label">RAG Chain</span>
-                <span className="stat-value">
-                  {vectorReady ? "Ready" : "Not Ready"}
-                </span>
+                <span className="stat-value">{vectorReady ? "Ready" : "Not Ready"}</span>
               </div>
               <div className="stat-item">
                 <span className="stat-label">AI Model</span>
@@ -196,11 +196,11 @@ export default function App() {
                   {msg.sender === "user" ? "U" : "A"}
                 </div>
                 <div className="message-content">
-                  {msg.sender === "assistant"
-                    ? <ReactMarkdown>{msg.text}</ReactMarkdown>
-                    : <p>{msg.text}</p>
-                  }
-                  {/* Sources for assistant */}
+                  {msg.sender === "assistant" ? (
+                    <ReactMarkdown>{msg.text}</ReactMarkdown>
+                  ) : (
+                    <p>{msg.text}</p>
+                  )}
                   {msg.sender === "assistant" && msg.sources && msg.sources.length > 0 && (
                     <div style={{ marginTop: 12 }}>
                       <b>References used:</b>
