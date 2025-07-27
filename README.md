@@ -1,6 +1,5 @@
 # ComplyAI – AI-Powered Document Search Assistant
 
-[GitHub Repository](https://github.com/adisingh-007/ComplyAI) | [Demo](https://comply-ai-gy6l.vercel.app/)
 
 ---
 
